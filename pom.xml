@@ -22,7 +22,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <start-class>info.alexhawley.ahpetclinic.AhPetClinicApplication</start-class>
+        <start-class>vlada.springframework.sfgpetclinic.SfgPetClinicApplication</start-class>
     </properties>
 
     <dependencies>
