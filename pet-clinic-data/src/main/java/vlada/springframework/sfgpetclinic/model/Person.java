@@ -1,6 +1,6 @@
 package vlada.springframework.sfgpetclinic.model;
 
-public class Person {
+public class Person extends BaseEntity {
 
     String ime;
     String prezime;
