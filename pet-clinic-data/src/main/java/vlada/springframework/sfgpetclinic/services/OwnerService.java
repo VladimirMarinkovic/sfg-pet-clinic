@@ -2,6 +2,7 @@ package vlada.springframework.sfgpetclinic.services;
 
 import vlada.springframework.sfgpetclinic.model.Owner;
 
+
 public interface OwnerService extends CrudService<Owner, Long> {
 
     Owner findByPrezime(String prezime);

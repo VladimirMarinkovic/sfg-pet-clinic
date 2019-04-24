@@ -1,10 +1,12 @@
 package vlada.springframework.sfgpetclinic.services.map;
 
+import org.springframework.stereotype.Service;
 import vlada.springframework.sfgpetclinic.model.Vet;
 import vlada.springframework.sfgpetclinic.services.VetService;
 
 import java.util.Set;
 
+@Service
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
 
     @Override
