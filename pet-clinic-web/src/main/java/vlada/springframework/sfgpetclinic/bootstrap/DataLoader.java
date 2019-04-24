@@ -45,11 +45,11 @@ public class DataLoader implements CommandLineRunner {
         vetService.save(vet1);
 
         Vet vet2 = new Vet();
-        vet1.setId(2l);
-        vet1.setIme("Pera");
-        vet1.setPrezime("Peric");
+        vet2.setId(2l);
+        vet2.setIme("Pera");
+        vet2.setPrezime("Peric");
 
-        vetService.save(vet1);
+        vetService.save(vet2);
         System.out.printf("Ucitani veterinari. \n");
 
     }

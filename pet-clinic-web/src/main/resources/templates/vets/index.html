@@ -7,5 +7,25 @@
 <body>
 <h1 th:text="'Lista Kucnih Ljubimaca'">Lista Kucnih Ljubimaca</h1>
 
+<table>
+
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Ime</th>
+        <th>Prezime</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="vet : ${vets}">
+        <td th:text="${vet.id}">1</td>
+        <td th:text="${vet.ime}">Pera</td>
+        <td th:text="${vet.prezime}">Mikic</td>
+    </tr>
+    </tbody>
+
+</table>
+
 </body>
 </html>
