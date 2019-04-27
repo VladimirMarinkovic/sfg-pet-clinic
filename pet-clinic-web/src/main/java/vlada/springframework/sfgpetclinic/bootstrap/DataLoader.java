@@ -2,12 +2,10 @@ package vlada.springframework.sfgpetclinic.bootstrap;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import vlada.springframework.sfgpetclinic.model.Owner;
-import vlada.springframework.sfgpetclinic.model.Pet;
-import vlada.springframework.sfgpetclinic.model.PetType;
-import vlada.springframework.sfgpetclinic.model.Vet;
+import vlada.springframework.sfgpetclinic.model.*;
 import vlada.springframework.sfgpetclinic.services.OwnerService;
 import vlada.springframework.sfgpetclinic.services.PetTypeService;
+import vlada.springframework.sfgpetclinic.services.SpecialityService;
 import vlada.springframework.sfgpetclinic.services.VetService;
 
 import java.time.LocalDate;
@@ -18,23 +16,44 @@ public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
     private final PetTypeService petTypeService;
+    private final SpecialityService specialityService;
 
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
+
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
+        this.specialityService = specialityService;
     }
 
     public void run(String... args) throws Exception {
 
+        int count = petTypeService.findAll().size();
+        if(count == 0) {  loadData(); }
+    }
+
+
+    private void loadData() {
         PetType pas = new PetType();
         pas.setNaziv("Pit");
         PetType savedPasPetType = petTypeService.save(pas);
 
         PetType macka = new PetType();
-        pas.setNaziv("Pit");
+        macka.setNaziv("Persijska");
         PetType savedMackaPetType = petTypeService.save(macka);
+
+        Speciality radiology = new Speciality();
+        radiology.setOpis("Radiologija");
+        Speciality savedRadiology = specialityService.save(radiology);
+
+        Speciality surgery = new Speciality();
+        surgery.setOpis("Hirurgija");
+        Speciality savedSurgery = specialityService.save(surgery);
+
+        Speciality dentistry = new Speciality();
+        dentistry.setOpis("Stomatoligija");
+        Speciality savedDentistry = specialityService.save(dentistry);
 
         Owner owner1 = new Owner();
         owner1.setIme("Vlada");
@@ -50,7 +69,6 @@ public class DataLoader implements CommandLineRunner {
         vladinPet.setOwner(owner1);
         vladinPet.setDatumRodjenja(LocalDate.now());
         owner1.getPets().add(vladinPet);
-
 
         Owner owner2 = new Owner();
         owner2.setIme("Jovana");
@@ -69,18 +87,18 @@ public class DataLoader implements CommandLineRunner {
 
         System.out.printf("Ucitani vlasnici. \n");
 
-
         Vet vet1 = new Vet();
         vet1.setIme("Marko");
         vet1.setPrezime("Markovic");
+        vet1.getSpecialities().add(savedRadiology);
         vetService.save(vet1);
 
         Vet vet2 = new Vet();
         vet2.setIme("Pera");
         vet2.setPrezime("Peric");
+        vet2.getSpecialities().add(savedSurgery);
         vetService.save(vet2);
 
         System.out.printf("Ucitani veterinari. \n");
-
     }
 }

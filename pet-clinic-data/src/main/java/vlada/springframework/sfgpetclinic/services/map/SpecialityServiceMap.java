@@ -2,12 +2,12 @@ package vlada.springframework.sfgpetclinic.services.map;
 
 import org.springframework.stereotype.Service;
 import vlada.springframework.sfgpetclinic.model.Speciality;
-import vlada.springframework.sfgpetclinic.services.SpecialtiesService;
+import vlada.springframework.sfgpetclinic.services.SpecialityService;
 
 import java.util.Set;
 
 @Service
-public class SpecialityServiceMap extends AbstractMapService<Speciality, Long> implements SpecialtiesService {
+public class SpecialityServiceMap extends AbstractMapService<Speciality, Long> implements SpecialityService {
 
 
     @Override
@@ -22,6 +22,7 @@ public class SpecialityServiceMap extends AbstractMapService<Speciality, Long> i
 
     @Override
     public Speciality save(Speciality object) {
+
         return super.save(object);
     }
 
