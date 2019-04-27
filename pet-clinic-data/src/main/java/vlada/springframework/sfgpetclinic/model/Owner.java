@@ -1,5 +1,6 @@
 package vlada.springframework.sfgpetclinic.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Owner extends Person {
@@ -7,7 +8,7 @@ public class Owner extends Person {
     private String adresa;
     private String grad;
     private String telefon;
-    private Set<Pet> pets;
+    private Set<Pet> pets = new HashSet<>();
 
 
     public String getAdresa() {
