@@ -3,8 +3,10 @@ package vlada.springframework.sfgpetclinic.bootstrap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import vlada.springframework.sfgpetclinic.model.Owner;
+import vlada.springframework.sfgpetclinic.model.PetType;
 import vlada.springframework.sfgpetclinic.model.Vet;
 import vlada.springframework.sfgpetclinic.services.OwnerService;
+import vlada.springframework.sfgpetclinic.services.PetTypeService;
 import vlada.springframework.sfgpetclinic.services.VetService;
 
 @Component
@@ -12,14 +14,24 @@ public class DataLoader implements CommandLineRunner {
 
     private final OwnerService ownerService;
     private final VetService vetService;
+    private final PetTypeService petTypeService;
 
 
-    public DataLoader(OwnerService ownerService, VetService vetService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
+        this.petTypeService = petTypeService;
     }
 
     public void run(String... args) throws Exception {
+
+        PetType pas = new PetType();
+        pas.setNaziv("Pit");
+        PetType savedPasPetType = petTypeService.save(pas);
+
+        PetType macka = new PetType();
+        pas.setNaziv("Pit");
+        PetType savedMackaPetType = petTypeService.save(macka);
 
         Owner owner1 = new Owner();
         owner1.setIme("Vlada");
