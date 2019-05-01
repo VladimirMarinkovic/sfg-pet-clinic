@@ -5,4 +5,5 @@ import vlada.springframework.sfgpetclinic.model.Owner;
 
 public interface OwnerRepository extends CrudRepository<Owner, Long> {
 
+    Owner findByPrezime(String prezime);
 }
