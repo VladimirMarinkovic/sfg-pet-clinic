@@ -1,13 +1,13 @@
 package vlada.springframework.sfgpetclinic.services.map;
 
+import org.springframework.stereotype.Service;
 import vlada.springframework.sfgpetclinic.model.Visit;
 import vlada.springframework.sfgpetclinic.services.VisitService;
 
 import java.util.Set;
 
+@Service
 public class VisitServiceMap extends AbstractMapService<Visit, Long> implements VisitService {
-
-
 
     @Override
     public Set<Visit> findAll() {

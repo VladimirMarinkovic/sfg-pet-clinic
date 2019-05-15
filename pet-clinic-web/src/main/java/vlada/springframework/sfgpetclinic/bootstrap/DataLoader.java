@@ -3,10 +3,7 @@ package vlada.springframework.sfgpetclinic.bootstrap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import vlada.springframework.sfgpetclinic.model.*;
-import vlada.springframework.sfgpetclinic.services.OwnerService;
-import vlada.springframework.sfgpetclinic.services.PetTypeService;
-import vlada.springframework.sfgpetclinic.services.SpecialityService;
-import vlada.springframework.sfgpetclinic.services.VetService;
+import vlada.springframework.sfgpetclinic.services.*;
 
 import java.time.LocalDate;
 
@@ -17,14 +14,16 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialityService specialityService;
+    private final VisitService visitService;
 
 
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialityService = specialityService;
+        this.visitService = visitService;
     }
 
     public void run(String... args) throws Exception {
@@ -76,7 +75,7 @@ public class DataLoader implements CommandLineRunner {
         owner2.setAdresa("Sutjetska ulica 7");
         owner2.setGrad("Beograd");
         owner2.setTelefon("062/745- 234");
-        ownerService.save(owner2);
+
 
         Pet jovaninaMacka = new Pet();
         jovaninaMacka.setPetType(savedMackaPetType);
@@ -84,6 +83,15 @@ public class DataLoader implements CommandLineRunner {
         jovaninaMacka.setOwner(owner2);
         jovaninaMacka.setDatumRodjenja(LocalDate.now());
         owner2.getPets().add(jovaninaMacka);
+
+        ownerService.save(owner2);
+
+        Visit mackaVisit = new Visit();
+        mackaVisit.setPet(jovaninaMacka);
+        mackaVisit.setDatum(LocalDate.now());
+        mackaVisit.setOpis("Macka je usamljena");
+
+        visitService.save(mackaVisit);
 
         System.out.printf("Ucitani vlasnici. \n");
 
