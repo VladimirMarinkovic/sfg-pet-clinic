@@ -1,5 +1,6 @@
 package vlada.springframework.sfgpetclinic.services.map;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import vlada.springframework.sfgpetclinic.model.Speciality;
 import vlada.springframework.sfgpetclinic.services.SpecialityService;
@@ -7,6 +8,7 @@ import vlada.springframework.sfgpetclinic.services.SpecialityService;
 import java.util.Set;
 
 @Service
+@Profile({"default", "map"})
 public class SpecialityServiceMap extends AbstractMapService<Speciality, Long> implements SpecialityService {
 
 
