@@ -1,12 +1,30 @@
 package vlada.springframework.sfgpetclinic.model;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Setter
+@Getter
+@NoArgsConstructor
+
 @Entity
 @Table(name = "owners")
 public class Owner extends Person {
+
+    @Builder
+    public Owner(Long id, String ime, String prezime, String adresa, String grad, String telefon, Set<Pet> pets) {
+        super(id,ime, prezime);
+        this.adresa = adresa;
+        this.grad = grad;
+        this.telefon = telefon;
+        this.pets = pets;
+    }
 
     @Column(name = "adresa")
     private String adresa;
@@ -21,35 +39,5 @@ public class Owner extends Person {
     private Set<Pet> pets = new HashSet<>();
 
 
-    public String getAdresa() {
-        return adresa;
-    }
 
-    public void setAdresa(String adresa) {
-        this.adresa = adresa;
-    }
-
-    public String getGrad() {
-        return grad;
-    }
-
-    public void setGrad(String grad) {
-        this.grad = grad;
-    }
-
-    public String getTelefon() {
-        return telefon;
-    }
-
-    public void setTelefon(String telefon) {
-        this.telefon = telefon;
-    }
-
-    public Set<Pet> getPets() {
-        return pets;
-    }
-
-    public void setPets(Set<Pet> pets) {
-        this.pets = pets;
-    }
 }

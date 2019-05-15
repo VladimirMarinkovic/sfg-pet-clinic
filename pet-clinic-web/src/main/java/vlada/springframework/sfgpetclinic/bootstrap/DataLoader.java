@@ -77,6 +77,8 @@ public class DataLoader implements CommandLineRunner {
         owner2.setTelefon("062/745- 234");
 
 
+
+
         Pet jovaninaMacka = new Pet();
         jovaninaMacka.setPetType(savedMackaPetType);
         jovaninaMacka.setIme("Miona");
